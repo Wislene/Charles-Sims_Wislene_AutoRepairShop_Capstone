@@ -4,10 +4,13 @@ const {
     getAppointmentById,
     createAppointment,
     updateAppointment,
-    deleteAppointment
-} = require('../controllers/Appointment');
+    deleteAppointment,
+    going
+} = require('../controllers/Appointment.js');
 
 const router = express.Router();
+
+router.get('/seed', going)
 
 // Route to get all appointments
 router.get('/', getAppointments);
@@ -23,5 +26,7 @@ router.put('/:id', updateAppointment);
 
 // Route to delete an appointment
 router.delete('/:id', deleteAppointment);
+
+
 
 module.exports = router;

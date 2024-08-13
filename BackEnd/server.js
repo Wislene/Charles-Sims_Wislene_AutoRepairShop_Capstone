@@ -38,8 +38,6 @@ require('dotenv').config();
 const appointmentRoutes = require('./routes/appointmentRoutes'); 
 
 
-
-
 const app = express();
 
 
@@ -70,7 +68,7 @@ app.use('/api/appointments', appointmentRoutes);
 
 
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: "*",
   credentials: true
 }));
 
@@ -90,7 +88,7 @@ connectDB();
 // Routes
 
 const appointmentRoute = require("./routes/appointmentRoutes.js");
-app.use("./api", appointmentRoute);
+app.use("/api", appointmentRoute);
 
 // Filename and --dirname
 

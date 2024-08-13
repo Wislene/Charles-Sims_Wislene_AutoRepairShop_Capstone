@@ -1,5 +1,5 @@
-// const express = require("express");
-// const router = express.Router();
+const express = require("express");
+const router = express.Router();
 
 // const { Appointments } = require("./models/appointment.js");
 const appointmentData = require("../SampleData/appointmentData.js"); // Importing the data
@@ -12,6 +12,7 @@ const Appointment = require('../models/appointment');
 // Get All Appointment
 
 const getAppointments = async (req, res) => {
+    console.log("anything");
   try {
       const appointments = await Appointment.find({});
       res.json(appointments);
@@ -103,13 +104,29 @@ const deleteAppointment = async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
   };
-  
+//   router.get('/seed',)
+
+  const going = async (req, res)=>{
+    console.log("going");
+    try {
+    await Appointment.deleteMany({}) // deletes all
+    await Appointment.insertMany(appointmentData) // adds new ones from array
+    res.send('done!')
+    }
+    catch (error) {
+        console.log("error");
+        res.status(500).json({ message: 'Server Error' });
+    }
+};
+
   module.exports = {
     getAppointments,
     getAppointmentById,
     createAppointment,
     updateAppointment,
     deleteAppointment,
+    going
+    
   };
 
 //   OLD Controller CODE-do not use
@@ -169,6 +186,8 @@ const deleteAppointment = async (req, res) => {
 //     res.status(500).json({message: 'Failed to get new item', error: error.message})
 //   }
 
+
+
 // })
 
 // app.get("/api/appointment", async (req, res) => {
@@ -224,4 +243,3 @@ const deleteAppointment = async (req, res) => {
 //   }
 // });
 
-// module.exports = router;
