@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+dotenv.config();
 const { Appointments } = require("../models/appointment");  // Require the Appointments model
 
 const { appointmentData } = require("../SampleData/appointmentData");  // Require the appointment data
@@ -16,6 +17,7 @@ const cleanData = async () => {
     await mongoose.connect(MONGO_URI);
     
     // Clear existing data from collections
+    console.log(Appointments);
     await Appointments.deleteMany({})
       .then(() => {
         console.log('Appointments have been cleared');
