@@ -1,0 +1,38 @@
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: blue; 
+  padding: 10px 20px;
+}
+
+/* Left section of the navbar */
+.navbar-left h1 {
+  color: white; 
+  margin: 0;
+}
+
+/* Right section of the navbar */
+.navbar-right ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-right ul li {
+  display: inline;
+}
+
+.navbar-right ul li a {
+  color: white; 
+  text-decoration: none;
+  padding: 8px 16px;
+}
+
+.navbar-right ul li a:hover {
+  background-color: gray; 
+  border-radius: 4px;
+}

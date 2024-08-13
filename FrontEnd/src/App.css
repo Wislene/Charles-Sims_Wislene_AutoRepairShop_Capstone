@@ -1,0 +1,81 @@
+/* Global styles for rest of site */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: white; 
+}
+
+/* Wrapper for page content */
+.content {
+  padding: 20px;
+  margin-top: 60px; /* Adjust to make sure it does not overlap with the navbar */
+}
+
+/* Page content styles */
+h1 {
+  color: black; 
+  text-align: center;
+  margin: 20px 0;
+}
+
+p {
+  text-align: center;
+  color: dimgray; 
+  font-size: 18px;
+  padding: 0 20px;
+}
+
+/* List styles (e.g., for services) */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background-color: lightgray; 
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid darkgray; 
+  border-radius: 4px;
+}
+
+ul li:hover {
+  background-color: gainsboro; 
+}
+
+/* Contact form styles */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 500px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid darkgray; 
+  border-radius: 4px;
+}
+
+button {
+  background-color: black; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: gray; 
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
