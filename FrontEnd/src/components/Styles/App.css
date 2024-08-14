@@ -1,4 +1,40 @@
-/* Global styles for rest of site */
+/* src/styles/app.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body, html {
+  @apply m-0 p-0 font-sans bg-white;
+}
+
+.content {
+  @apply p-8;
+}
+
+h1, h2 {
+  @apply text-center text-gray-800;
+}
+
+p {
+  @apply text-gray-700 text-base leading-relaxed;
+}
+
+ul {
+  @apply list-none p-0;
+}
+
+a {
+  @apply text-blue-500 hover:underline;
+}
+
+button {
+  @apply bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600;
+}
+
+
+
+/* Global styles for rest of site
 body, html {
   margin: 0;
   padding: 0;
@@ -7,19 +43,19 @@ body, html {
 }
 
 /* Wrapper for page content */
-.content {
+/* .content {
   padding: 20px;
   margin-top: 60px; /* Adjust to make sure it does not overlap with the navbar */
-}
+/* } */ 
 
 /* Page content styles */
-h1 {
+/* h1 {
   color: black; 
   text-align: center;
-  margin: 20px 0;
-}
+  margin: 20px 0; */
+/* } */ 
 
-p {
+/* p {
   text-align: center;
   color: dimgray; 
   font-size: 18px;
@@ -27,7 +63,7 @@ p {
 }
 
 /* List styles (e.g., for services) */
-ul {
+/* ul {
   list-style-type: none;
   padding: 0;
 }
@@ -37,32 +73,32 @@ ul li {
   margin: 10px 0;
   padding: 10px;
   border: 1px solid darkgray; 
-  border-radius: 4px;
-}
+  border-radius: 4px; */
+/* } */ 
 
-ul li:hover {
+/* ul li:hover {
   background-color: gainsboro; 
-}
+} */
 
 /* Contact form styles */
-form {
+/* form {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px auto;
   width: 80%;
   max-width: 500px;
-}
+} */
 
-input, textarea {
+/* input, textarea {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid darkgray; 
   border-radius: 4px;
-}
+} */
 
-button {
+/* button {
   background-color: black; 
   color: white;
   border: none;
@@ -74,8 +110,5 @@ button {
 
 button:hover {
   background-color: gray; 
-}
+} */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

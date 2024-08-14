@@ -1,7 +1,7 @@
 import React from "react";
 import Service from "../components/Services";
 import Footer from "../components/Footer";
-import "./Home.css";
+import "../components/Styles/home.css";
 
 
 const Home = () => {

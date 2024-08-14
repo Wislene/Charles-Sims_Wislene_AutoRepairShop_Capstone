@@ -2,7 +2,7 @@ import React from 'react';
 import Home from './Home';
 import Service from '../components/Services'
 import Footer from '../components/Footer'
-import './Services.css';
+import '../components/Styles/Services.css';
 
 const Services = () => {
   return (
