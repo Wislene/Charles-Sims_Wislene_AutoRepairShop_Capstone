@@ -14,6 +14,7 @@ return (
                 <li><Link className="text-white hover:bg-gray-700 px-3 py-2 rounded" to="/about">About</Link></li>
                 <li><Link className="text-white hover:bg-gray-700 px-3 py-2 rounded" to="/services">Services</Link></li>
                 <li><Link className="text-white hover:bg-gray-700 px-3 py-2 rounded" to="/appointment">Appointment</Link></li> 
+                {/* <li><Link className="text-white hover:bg-gray-700 px-3 py-2 rounded" to="/appointment">Contact</Link></li>  */}
 
                 {/* <li><Link className="text-white hover:bg-gray-700 px-3 py-2 rounded" to="/contact">Contact Us</Link></li> */}
             </ul>

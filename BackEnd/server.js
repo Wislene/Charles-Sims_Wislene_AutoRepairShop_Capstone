@@ -12,6 +12,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const { fileURLToPath } = require('url');
 const appointmentRoutes = require('./routes/appointmentRoutes.js');
+const appointmentModel = require('./models/appointment.js');
+
 
 // const { router: appointmentRouter } = require('./routes/appointmentRoutes.js'); This code gave me an error of appointment router not define so I had to remove the curly brackets for it to work.
 
@@ -109,10 +111,11 @@ app.use((err, req, res, next) => {
   next();
 });
 
-// Route to render the homepage
+// Route to render the homepage with appointment model
 
-app.get("/", (req, res) => {
-  res.render("home"); // This will render the home.pug file
+app.get("/", async (req, res) => {
+  let appointments = await appointmentModel.find({})
+  res.send(appointments); // This will render the appointment model file
 });
 
 
