@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Service = () => {
+const Service = ({ title, image, alt, description }) => {
     return (
         <div>
             <h1>Services</h1>

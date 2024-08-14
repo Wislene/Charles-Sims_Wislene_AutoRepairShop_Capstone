@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+
+// import AppointmentForm from "../components/AppointmentForm";
+import Footer from "../components/Footer";
+// import "../styles/app.css";
 
 const AppointmentForm = () => {
   const [formData, setFormData] = useState({
-    customerName: '',
-    service: '',
-    date: '',
-    time: '',
-    contactNumber: '',
-    status: 'Scheduled',
+    customerName: "",
+    service: "",
+    date: "",
+    time: "",
+    contactNumber: "",
+    status: "Scheduled",
   });
 
   const handleChange = (e) => {
@@ -21,19 +25,24 @@ const AppointmentForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/appointments/create', formData);
-      console.log('Appointment created:', response.data);
+      // const response = await axios.post('/api/appointments/create', formData);
+      const response = await axios.post(
+        "http://localhost:5001/api/appointments/create",
+        formData
+      );
+
+      console.log("Appointment created:", response.data);
       // Reset the form or provide feedback to the user
       setFormData({
-        customerName: '',
-        service: '',
-        date: '',
-        time: '',
-        contactNumber: '',
-        status: 'Scheduled',
+        customerName: "",
+        service: "",
+        date: "",
+        time: "",
+        contactNumber: "",
+        status: "Scheduled",
       });
     } catch (error) {
-      console.error('There was an error creating the appointment!', error);
+      console.error("There was an error creating the appointment!", error);
     }
   };
 
@@ -96,11 +105,7 @@ const AppointmentForm = () => {
 
       <div>
         <label>Status:</label>
-        <select
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
-        >
+        <select name="status" value={formData.status} onChange={handleChange}>
           <option value="Scheduled">Scheduled</option>
           <option value="Completed">Completed</option>
           <option value="Cancelled">Cancelled</option>

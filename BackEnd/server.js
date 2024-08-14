@@ -35,8 +35,36 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use('/api', appointmentRoutes);
 
+app.post('/api/appointments/create', (req, res) => {
+  res.json({ message: 'Appointment created successfully' });
+});
+
 //Using Morgan for logging requests
 app.use(morgan("dev"));
+
+app.use(cors()); 
+
+// app.use(cors({
+//   origin: 'http://localhost:5173', // Replace with your frontend's URL
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true, // This allows the server to accept cookies from the frontend
+//   allowedHeaders: 'Content-Type,Authorization',
+//   optionsSuccessStatus: 200 // For legacy browsers that choke on 204
+// }));
+
+// app.use(cors({
+//   origin: 'http://localhost:5173',
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Specify allowed methods
+//   allowedHeaders: 'Content-Type,Authorization' // Specify allowed headers
+  
+
+
+  // old one
+  // app.use(cors)
+  // origin: "*",
+  
+    // credentials: true;
+  // }));
 
 
 // app.use(express.static("public"));
@@ -45,10 +73,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static("public")); Having an error about path
 
 
-app.use(cors({
-  origin: "*",
-  credentials: true
-}));
+
 
 // Mongoose Database Connection
 
