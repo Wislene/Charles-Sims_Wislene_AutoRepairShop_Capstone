@@ -1,0 +1,52 @@
+doctype html
+html(lang="en")
+  head
+    title Manage Appointments
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet" href="/styles.css")
+
+  body
+    h1 Manage Appointments
+
+    // Form to add a new appointment
+    form(action="/api/appointments/create" method="POST")
+      div
+        label(for="customerName") Customer Name:
+        input(type="text" name="customerName" required)
+
+      div
+        label(for="service") Service:
+        input(type="text" name="service" required)
+
+      div
+        label(for="date") Date:
+        input(type="date" name="date" required)
+
+      div
+        label(for="time") Time:
+        input(type="time" name="time" required)
+
+      div
+        label(for="contactNumber") Contact Number:
+        input(type="tel" name="contactNumber" required)
+
+      div
+        label(for="status") Status:
+        select(name="status")
+          option(value="Scheduled") Scheduled
+          option(value="Completed") Completed
+          option(value="Cancelled") Cancelled
+
+      div
+        button(type="submit") Add Appointment
+
+    // List of appointments with edit and delete buttons
+    ul
+      each appointment in appointments
+        li
+          | #{appointment.customerName} - #{appointment.service} - #{appointment.date.toDateString()} - #{appointment.time}
+          form(action=`/api/appointments/${appointment._id}/edit` method="GET" style="display:inline")
+            button(type="submit") Edit
+          form(action=`/api/appointments/${appointment._id}?_method=DELETE` method="POST" style="display:inline")
+            button(type="submit") Delete

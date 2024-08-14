@@ -11,7 +11,7 @@ const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const { fileURLToPath } = require('url');
-const appointmentrouter = require('./routes/appointmentRoutes');
+const appointmentRoutes = require('./routes/appointmentRoutes.js');
 
 // const { router: appointmentRouter } = require('./routes/appointmentRoutes.js'); This code gave me an error of appointment router not define so I had to remove the curly brackets for it to work.
 
@@ -19,24 +19,6 @@ const appointmentrouter = require('./routes/appointmentRoutes');
 const router = express.Router();
 
 require('dotenv').config();
-
-// Appointment Data SEED
-
-// const appointmentData = require("./SampleData/appointmentData"); //Correct path to your data
-// const Appointment = require('./models/appointment.js'); // Correct path to your model
-
-
-// mongoose.connect(process.env.MOMGO_URI).then(() => {
-//   Appointments.deleteMany({}).then(() => {
-//     Appointments.insertMany(appointmentData).then(() => {
-//       console.log("Appointments seeded");
-//     });
-//   });
-// });
-
-
-const appointmentRoutes = require('./routes/appointmentRoutes'); 
-
 
 const app = express();
 
@@ -49,9 +31,9 @@ app.use(methodOverride("_method"));
 app.use(errorHandler);
 app.use(logRequests);
 app.set("view engine", "pug");
-app.set("views", "./Views");
+// app.set("views", "./Views");
 app.set("views", path.join(__dirname, "views"));
-app.use("api/appointment", appointmentrouter);
+app.use('/api', appointmentRoutes);
 
 //Using Morgan for logging requests
 app.use(morgan("dev"));
@@ -61,10 +43,6 @@ app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(express.static("public")); Having an error about path
-
-app.use('/api/appointments', appointmentRoutes);
-
-// app.use('/api/services', serviceRoutes);
 
 
 app.use(cors({
@@ -76,8 +54,9 @@ app.use(cors({
 
 async function connectDB() {
   try {
+    
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("Connected successfully");
+    console.log("MonGoDB Connected successfully");
   } catch (error) {
     console.error("Failed to connect to MONGODB Database", error);
   }
@@ -85,10 +64,8 @@ async function connectDB() {
 
 connectDB();
 
-// Routes
+// app.use("/api", appointmentRoute); delete this one to have a more specic route to appointments. 
 
-const appointmentRoute = require("./routes/appointmentRoutes.js");
-app.use("/api", appointmentRoute);
 
 // Filename and --dirname
 
@@ -114,9 +91,9 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
 
 
 // Start the Server: 

@@ -24,18 +24,10 @@ const cleanData = async () => {
     await Appointment.deleteMany({})
     
     console.log('Services have been cleared');
-      
-      
     
-    // await Customers.deleteMany({})
-      
-    
-    // Insert new data into collections
+  
     await Appointment.insertMany(appointmentData)
       
-    // await Services.insertMany(serviceData)
-      
-    // await Customers.insertMany(customerData)
      
   } catch (error) {
     console.error(error.message);

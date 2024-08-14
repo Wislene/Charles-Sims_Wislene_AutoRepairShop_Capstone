@@ -1,12 +1,21 @@
 const express = require("express");
 const router = express.Router();
 
-// const { Appointments } = require("./models/appointment.js");
+
 const appointmentData = require("../SampleData/appointmentData.js"); // Importing the data
 
-const Appointment = require('../models/appointment');
+const Appointment = require('../models/appointment.js');
 
-// const Appointments = require("../models/appointment.js");
+// Render the form to list all appointments
+
+const renderForm = async (req, res) => {
+    try {
+      const appointments = await Appointment.find({});
+      res.render('form', { appointments, appointment: null });
+    } catch (error) {
+      res.status(500).json({ message: 'Server Error' });
+    }
+  };
 
 
 // Get All Appointment
@@ -17,7 +26,7 @@ const getAppointments = async (req, res) => {
       const appointments = await Appointment.find({});
       res.json(appointments);
   } catch (error) {
-      res.status(500).json({ message: 'Server Error' });
+      res.status(500).json({ message: 'Can not get all appointments' });
   }
 };
 
@@ -40,44 +49,50 @@ const getAppointmentById = async (req, res) => {
 // Create a new Appointment
 
 const createAppointment = async (req, res) => {
-  const { customerName, service, date, time, contactNumber, status } = req.body;
+
+// Log the incoming form data
+//   console.log(req.body);
+
+  const {customerName, service, date, time, contactNumber, status } = req.body;
 
   try {
-      const appointment = new Appointment({
+      const newAppointment = new Appointment({
           customerName,
           service,
-          date,
+          date: new Date(date),
           time,
           contactNumber,
           status,
 
       });
-
-      const createdAppointment = await appointment.save();
+   
+      const createdAppointment = await newAppointment.save();
       res.status(201).json(createdAppointment);
   } catch (error) {
-      res.status(400).json({ message: 'Error creating appointment' });
+      res.status(400).json({ message: 'Error creating appointment',error: error.message });
   }
 };
 
 // Update an Appointment
 
 const updateAppointment = async (req, res) => {
-  const { customerName, service, date, time, contactNumber, status } = req.body;
+  const {customerName, service, date, time, contactNumber, status } = req.body;
 
   try {
       const appointment = await Appointment.findById(req.params.id);
+    //   res.render('form', { appointment, appointments });
 
       if (appointment) {
           appointment.customerName = customerName || appointment.customerName;
           appointment.service = service || appointment.service;
-          appointment.date = date || appointment.date;
+          appointment.date = new Date(date) || appointment.date;
           appointment.time = time || appointment.time;
           appointment.contactNumber = contactNumber || appointment.contactNumber;
           appointment.status = status || appointment.status;
 
           const updatedAppointment = await appointment.save();
           res.json(updatedAppointment);
+         
       } else {
           res.status(404).json({ message: 'Appointment not found' });
       }
@@ -92,8 +107,8 @@ const updateAppointment = async (req, res) => {
 
 const deleteAppointment = async (req, res) => {
     try {
-        const appointment = await Appointment.findById(req.params.id);
-  
+        const appointment = await Appointment.findByIdAndDelete(req.params.id);
+       
         if (appointment) {
             await appointment.remove();
             res.json({ message: 'Appointment removed' });
@@ -101,25 +116,27 @@ const deleteAppointment = async (req, res) => {
             res.status(404).json({ message: 'Appointment not found' });
         }
     } catch (error) {
-        res.status(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Error deleting appointment', error: error.message });
     }
   };
-//   router.get('/seed',)
+
+//   Seed the database with sample data
 
   const going = async (req, res)=>{
     console.log("going");
     try {
     await Appointment.deleteMany({}) // deletes all
     await Appointment.insertMany(appointmentData) // adds new ones from array
-    res.send('done!')
+    res.json({ message: 'Database seeded with sample data' });
     }
     catch (error) {
         console.log("error");
-        res.status(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Server Error', error: error.message });
     }
 };
 
   module.exports = {
+    renderForm,
     getAppointments,
     getAppointmentById,
     createAppointment,
