@@ -166,6 +166,10 @@ const appointmentData = [
   },
 ];
 
+// const insertData = async () =>{
+  
+// }
+
 module.exports = appointmentData;
 
 // Service Explanation

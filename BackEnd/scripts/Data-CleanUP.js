@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
-const { Appointments } = require("../models/appointment");  // Require the Appointments model
+const Appointment = require("../models/appointment");  // Require the Appointments model
 
-const { appointmentData } = require("../SampleData/appointmentData");  // Require the appointment data
+const appointmentData = require("../SampleData/appointmentData");  // Require the appointment data
 
 
 const cleanData = async () => {
@@ -17,55 +17,26 @@ const cleanData = async () => {
     await mongoose.connect(MONGO_URI);
     
     // Clear existing data from collections
-    console.log(Appointments);
-    await Appointments.deleteMany({})
-      .then(() => {
-        console.log('Appointments have been cleared');
-      })
-      .catch((error) => {
-        console.log('Error deleting the appointments', error);
-      });
+    console.log(Appointment);
+    await Appointment.deleteMany({})
+      
     
-    await Services.deleteMany({})
-      .then(() => {
-        console.log('Services have been cleared');
-      })
-      .catch((error) => {
-        console.log('Error deleting the services', error);
-      });
+    await Appointment.deleteMany({})
     
-    await Customers.deleteMany({})
-      .then(() => {
-        console.log('Customers have been cleared');
-      })
-      .catch((error) => {
-        console.log('Error deleting the customers', error);
-      });
+    console.log('Services have been cleared');
+      
+      
+    
+    // await Customers.deleteMany({})
+      
     
     // Insert new data into collections
-    await Appointments.insertMany(appointmentData)
-      .then(() => {
-        console.log('Appointments have been saved');
-      })
-      .catch((error) => {
-        console.log('Error saving appointments', error);
-      });
-    
-    await Services.insertMany(serviceData)
-      .then(() => {
-        console.log('Services have been saved');
-      })
-      .catch((error) => {
-        console.log('Error saving services', error);
-      });
-    
-    await Customers.insertMany(customerData)
-      .then(() => {
-        console.log('Customers have been saved');
-      })
-      .catch((error) => {
-        console.log('Error saving customers', error);
-      });
+    await Appointment.insertMany(appointmentData)
+      
+    // await Services.insertMany(serviceData)
+      
+    // await Customers.insertMany(customerData)
+     
   } catch (error) {
     console.error(error.message);
     process.exit(1);
