@@ -29,17 +29,3 @@ function App() {
   );
 }
 export default App;
-
-// import { useState } from 'react'
-
-// import './App.css'
-
-// function App() {
-
-//   return (
-
-//   )
-// };
-
-// export default App: can only use export default with mjs module. I received an error in my terminal.
-// module.exports = App;

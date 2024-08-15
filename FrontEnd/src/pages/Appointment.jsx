@@ -3,6 +3,7 @@ import AppointmentForm from '../components/AppointmentForm';
 import Footer from '../components/Footer';
 import "../components/styles/App.css"; // Global styles
 
+
 const Appointment = () => {
   return (
     <div className="min-h-screen bg-gray-100">
