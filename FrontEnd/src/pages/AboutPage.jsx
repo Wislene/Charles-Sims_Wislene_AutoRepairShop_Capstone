@@ -1,27 +1,3 @@
-// import React from 'react';
-// import About from '../components/about';
-// import Footer from '../components/Footer';
-
-// const AboutPage = () => {
-//   const aboutText = {
-//     title: "About Us",
-//     description1: "We are a trusted auto repair shop with over 25 years of experience in the industry.",
-//     description2: "Our team of skilled technicians is dedicated to providing top-quality service to ensure your vehicle runs smoothly."
-//   };
-
-//   return (
-//     <div>
-//       <main>
-//         <section className="about-section">
-//           <About aboutText={aboutText} />
-//         </section>
-//       </main>
-//       <Footer />
-//     </div>
-//   );
-// };
-
-// export default AboutPage;
 
 import React from "react";
 import About from "../components/About";
@@ -42,7 +18,7 @@ const AboutPage = () => {
           </p>
         </section>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
