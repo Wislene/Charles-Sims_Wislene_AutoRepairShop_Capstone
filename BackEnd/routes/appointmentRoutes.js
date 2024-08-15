@@ -25,9 +25,9 @@ router.get('/appointments/:id', getAppointmentById); // Get a single appointment
 
 router.post('/appointments/create', createAppointment); // Create a new appointment
 
-router.post('/appointments/:id?_method=PUT', updateAppointment); // Update an appointment
+router.put('/appointments/:id?_method=PUT', updateAppointment); // Update an appointment
 
-router.post('/appointments/:id?_method=DELETE', deleteAppointment); // Delete an appointment
+router.delete('/appointments/:id?_method=DELETE', deleteAppointment); // Delete an appointment
 
 router.get('/appointments/seed', going); // Seed the database with sample data
 
